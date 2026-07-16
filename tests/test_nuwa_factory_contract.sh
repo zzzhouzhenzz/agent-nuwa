@@ -17,6 +17,10 @@ required_patterns=(
   'Do not start, message, monitor, wait for, close, or supervise'
   'restore the prior global config'
   'codex app-server --strict-config'
+  '[[skills.config]]'
+  'Do not search Codex documentation or source code'
+  'already has a verified vetting verdict'
+  'one targeted lookup and repair'
 )
 
 for pattern in "${required_patterns[@]}"; do
