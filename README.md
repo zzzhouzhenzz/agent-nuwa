@@ -21,6 +21,15 @@ mkdir -p "${CODEX_HOME:-$HOME/.codex}/agents"
 cp agents/nuwa.toml "${CODEX_HOME:-$HOME/.codex}/agents/nuwa.toml"
 ```
 
+Register the custom role in `${CODEX_HOME:-$HOME/.codex}/config.toml`:
+
+```toml
+[agents.nuwa]
+description = "Create one globally reusable Codex custom agent, then stop."
+config_file = "agents/nuwa.toml"
+nickname_candidates = ["Nuwa"]
+```
+
 Restart Codex or begin a new task so it reloads the NÜWA definition.
 
 ## Use

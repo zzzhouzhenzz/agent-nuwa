@@ -44,6 +44,8 @@ readme_file="README.md"
 
 readme_patterns=(
   'globally reusable custom agent'
+  '[agents.nuwa]'
+  'nickname_candidates = ["Nuwa"]'
   'linus_v2'
   '~/.codex/agents/<agent-id>/skills/'
   'does not spawn or run the created agent'
