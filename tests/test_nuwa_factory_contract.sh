@@ -40,4 +40,21 @@ for pattern in "${forbidden_patterns[@]}"; do
   fi
 done
 
+readme_file="README.md"
+
+readme_patterns=(
+  'globally reusable custom agent'
+  'linus_v2'
+  '~/.codex/agents/<agent-id>/skills/'
+  'does not spawn or run the created agent'
+  'start a new Codex session'
+)
+
+for pattern in "${readme_patterns[@]}"; do
+  if ! rg -Fq "$pattern" "$readme_file"; then
+    echo "missing README factory behavior: $pattern" >&2
+    exit 1
+  fi
+done
+
 echo "PASS: NÜWA is a persistent-agent factory"
