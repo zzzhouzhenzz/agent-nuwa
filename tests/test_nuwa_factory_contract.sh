@@ -3,6 +3,22 @@ set -euo pipefail
 
 agent_file="agents/nuwa.toml"
 
+if ! git check-ignore -q .local/private-smoke-test.md; then
+  echo "local test material must stay ignored under .local/" >&2
+  exit 1
+fi
+
+private_home_pattern='/(Users|home)/''[^/[:space:]]+/'
+thread_id_pattern='codex://threads/''[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
+
+if git grep -n -E \
+  -e "$private_home_pattern" \
+  -e "$thread_id_pattern" \
+  -- .; then
+  echo "tracked files must use portable paths and placeholder Codex task IDs" >&2
+  exit 1
+fi
+
 python3 -c 'import pathlib, tomllib; tomllib.loads(pathlib.Path("agents/nuwa.toml").read_text())'
 
 required_patterns=(
